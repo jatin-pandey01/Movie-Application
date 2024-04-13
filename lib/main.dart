@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/movie.dart';
+import 'package:movie_app/pages/movie.dart';
 
 void main() {
   runApp(const MyApp());
