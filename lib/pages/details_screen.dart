@@ -11,6 +11,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  int selectedColor=0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -135,6 +136,63 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                           ),
                         ),
+                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 70,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: time.length,
+                            itemBuilder: (context,index){
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedColor = index; 
+                                  });
+                                },
+                                child: FadeInUp(
+                                  delay: Duration(milliseconds: index*100),
+                                  child: AnimatedContainer(
+                                    height: 60,
+                                    width: 60,
+                                    duration: Duration(milliseconds: 400),
+                                    margin: EdgeInsets.only(right: 10),
+                                    decoration: BoxDecoration(
+                                      color: selectedColor == index ? colors[index] : colors[index].withOpacity(0.5),
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        width: selectedColor == index ? 3.0:0, 
+                                        color: selectedColor == index ? Colors.blue : Colors.transparent
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        time[index],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: selectedColor == index ? Colors.white : Colors.black54,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ),
+                              );
+                            }
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        Center(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 140, vertical: 15),
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Text("Check Out", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.white),),
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        
                       ],
                     ),
                   ),
